@@ -13,11 +13,11 @@ import (
 func Server(query string) (string, error) {
 	// Queries on TLDs always against IANA
 	if strings.Index(query, ".") < 0 {
-		return IANA, "", nil
+		return WHOIS_DOMAIN, nil
 	}
 	z := zonedb.PublicZone(query)
 	if z == nil {
-		return "", "", fmt.Errorf("no public zone found for %s", query)
+		return "", fmt.Errorf("no public zone found for %s", query)
 	}
 	host := z.WhoisServer()
 	wu := z.WhoisURL()
